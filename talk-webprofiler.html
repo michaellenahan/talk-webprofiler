@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+# Drupal 8 Webprofiler
+
+### Michael Lenahan
+
+### Drupal-Entwickler bei [erdfisch](erdfish.de), Heidelberg
+
+*Shameless plug*: Drupal Camp Heidelberg, April 2016
+
+*date to be confirmed*
+---
+
+# Webprofiler module
+
+https://www.drupal.org/project/webprofiler
+https://www.drupal.org/u/lussoluca
+https://events.drupal.org/barcelona2015/schedule/2015-09-24
+https://events.drupal.org/barcelona2015/sessions/how-drupal-8-builds-your-pages
+
+---
+
+# Setup
+
+- Install Drupal 8
+- Install webprofiler module
+- (Install examples module)
+
+Disable Optimizations
+
+    if (file_exists(__DIR__ . '/settings.local.php')) {
+      include __DIR__ . '/settings.local.php';
+    }
+
+---
+
+# Webprofiler configuration
+
+Data collector plugins
+
+IDE Link integration
+
+See README in webprofiler/README
+
+### Sublime Text/Ubuntu
+
+http://stackoverflow.com/questions/14676981/sublime-text-url-handler-for-ubuntu
+
+---
+
+# Route, Controller
+
+    page_example_simple:
+      path: 'examples/page_example/simple'
+      defaults:
+        _controller: '\Drupal\page_example\Controller\PageExampleController::simple'
+        _title: 'Simple - no arguments'
+      requirements:
+        _permission: 'access simple page'
+
+
+- Controller <-- liefert ein *render array* zurück, oder ein http response object
+
+    page_example_arguments:
+      path: 'examples/page_example/arguments/{first}/{second}'
+
+---
+
+# Forms
+
+buildForm class
+
+---
+
+# Services
+
+database service
+
+---
+
+# Databases
+
+SWAP PLACEHOLDERS
+
+---
+
+# Theme layer
+
+Twig timeline and dependencies
+
+---
+
+# Data collectors are exensible!
+
+Rules module
+
+Themekey module
+
+Debugging information will be collected using Webprofiler
+
+---
+
+# Thank you!
+
+Especially lussoluca
+
+
+    </textarea>
+    <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
