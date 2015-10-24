@@ -61,9 +61,9 @@ Data collector plugins
 
 IDE Link integration
 
-See README in webprofiler/README
+See README in webprofiler/README.md
 
-### Sublime Text/Ubuntu
+#### Sublime Text/Ubuntu IDE Link
 
 http://stackoverflow.com/questions/14676981/sublime-text-url-handler-for-ubuntu
 
@@ -80,26 +80,66 @@ http://stackoverflow.com/questions/14676981/sublime-text-url-handler-for-ubuntu
         _permission: 'access simple page'
 
 
-- Controller <-- liefert ein *render array* zurück, oder ein http response object
+- Controller <-- provides a drupal *render array*, or http response object
 
     page_example_arguments:
       path: 'examples/page_example/arguments/{first}/{second}'
+
+So, if you go to: examples/page_example/arguments/23/kwatsch
+
+You get a 403 response.
+
+You can see why, in the controller:
+
+    public function arguments($first, $second) {
+      // Make sure you don't trust the URL to be safe! Always check for exploits.
+      if (!is_numeric($first) || !is_numeric($second)) {
+        // We will just show a standard "access denied" page in this case.
+        throw new AccessDeniedHttpException();
+      }
+      ...
 
 ---
 
 # Forms
 
-buildForm class
+buildForm()
+
+In the webprofiler Form widget, the elements of the Form API array are listed.
+
+All forms have a buildForm() method on their controller, this builds the form.
 
 ---
 
 # Services
 
-database service
+Services contain business logic:
+- for easy reuse
+- for easy testing
+
+A good example of a service is:
+cache.backend.null
+... in development.services.yml
+
+Drupal core has over 500 services defined, each does a specific job:
+- translate a text
+- run a database query
+- send an email
+- authenticate a user
+
+We can see a complete list of all the services in the Services widget.
+We can see which services have been initialized on this request.
+INFO --> we can see the dependencies that a service has
+Count: # of times the service requested
+Time taken to initialize the service (only initialized once)
 
 ---
 
 # Databases
+
+One example of a service is the database service.
+
+This service is so important, it has it's own widget.
 
 SWAP PLACEHOLDERS
 
