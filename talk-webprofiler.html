@@ -71,6 +71,8 @@ http://stackoverflow.com/questions/14676981/sublime-text-url-handler-for-ubuntu
 
 # Route, Controller
 
+This is a route:
+
     page_example_simple:
       path: 'examples/page_example/simple'
       defaults:
@@ -79,8 +81,9 @@ http://stackoverflow.com/questions/14676981/sublime-text-url-handler-for-ubuntu
       requirements:
         _permission: 'access simple page'
 
+The _controller provides a drupal *render array*, or http response object
 
-- Controller <-- provides a drupal *render array*, or http response object
+This is a slightly more complex route, with two arguments:
 
     page_example_arguments:
       path: 'examples/page_example/arguments/{first}/{second}'
